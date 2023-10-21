@@ -11,7 +11,7 @@ I will not add a dialogue system to this framework because :
 
 ## Features
 
-- An input priority, that prioritizes the last directional key pressed
+- An input priority system, that prioritizes the last directional key pressed
 - Movement animations that alternate between swinging the left and right arm for each grid move
 - Modifiable Actor movement speed, that also speeds up the animation accordingly
 - Moving NPC's that interact correctly with the grid, and don't act buggy when the player bumps into them
