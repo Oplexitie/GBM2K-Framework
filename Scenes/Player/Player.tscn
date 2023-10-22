@@ -291,7 +291,7 @@ nodes/StateMachine/node = SubResource( 84 )
 nodes/StateMachine/position = Vector2( -180, 140 )
 nodes/TimeScale/node = SubResource( 85 )
 nodes/TimeScale/position = Vector2( 60, 140 )
-node_connections = [ "TimeScale", 0, "StateMachine", "output", 0, "TimeScale" ]
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "StateMachine" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=87]
 

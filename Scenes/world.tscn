@@ -194,7 +194,7 @@ script = ExtResource( 2 )
 position = Vector2( 184, 88 )
 
 [node name="Camera2D" type="Camera2D" parent="YSort/Layer2/Player"]
-position = Vector2( -152, -88 )
+position = Vector2( -152, -118 )
 offset = Vector2( -8, -8 )
 anchor_mode = 0
 current = true
@@ -206,7 +206,7 @@ limit_bottom = 376
 [node name="Actor" parent="YSort/Layer2" instance=ExtResource( 6 )]
 position = Vector2( 88, 120 )
 speed = 1.0
-move_pattern = [ Vector2( 1, 0 ), Vector2( 1, 0 ), Vector2( 1, 0 ), Vector2( 0, -1 ), Vector2( -1, 0 ), Vector2( -1, 0 ), Vector2( -1, 0 ), Vector2( 0, 1 ) ]
+move_pattern = [ Vector2( 1, 0 ), Vector2( 1, 0 ), Vector2( 1, 0 ), Vector2( 0, -1 ), Vector2( -1, 0 ), Vector2( -1, 0 ), Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( 0, 0 ) ]
 
 [node name="Layer 3" type="TileMap" parent="YSort"]
 tile_set = SubResource( 3 )
