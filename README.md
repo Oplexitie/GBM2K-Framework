@@ -1,13 +1,8 @@
 # GBM2K-Framework
 
-## Description
-
-The GBM2K (Grid Based Movement 2K) Framework is a Godot 3 framework made for 2D top-down grid based games like YumeNikki.
+The GBM2K (Grid Based Movement 2K) Framework is a Godot 4 framework made for 2D top-down grid based games like YumeNikki.
 
 The framework replicates the grid movement seen in RPG Maker 2000 while keeping things simple and easily modifiable.
-I will not add a dialogue system to this framework because :
-  - A - The projects goal is to make a simple 2D Grid Base Movement system that people can build off of. 
-  - B - There are many options for Dialogue Systems in Godot, and I'd rather people make that decision for themselves.
 
 ## Features
 
@@ -15,6 +10,7 @@ I will not add a dialogue system to this framework because :
 - Movement animations that alternate between swinging the left and right arm for each grid move
 - Modifiable Actor movement speed, that also speeds up the animation accordingly
 - Moving NPC's that interact correctly with the grid, and don't act buggy when the player bumps into them
+- A simple dialogue system that can be replaced if needed
 
 ## Other info
 
