@@ -1,6 +1,6 @@
 [gd_scene load_steps=36 format=2]
 
-[ext_resource path="res://Scripts/Pawns/actor.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Actors/actor.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Actors/actor_man.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=98]

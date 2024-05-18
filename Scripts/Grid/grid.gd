@@ -27,6 +27,19 @@ func request_move(pawn, direction):
 		EMPTY:
 			return update_pawn_position(pawn, cell_start, cell_target)
 
+# Used to request dialogue opportunity
+func request_diag(pawn, direction):
+	var cell_start : Vector2 = world_to_map(pawn.position)
+	var cell_target : Vector2 = cell_start + direction
+	
+	var cell_target_type = get_cellv(cell_target)
+	match cell_target_type:
+		ACTOR:
+			var object_pawn = get_cell_pawn(cell_target)
+			# Checks just in case if the pawn was detected corretly
+			if object_pawn != null:
+				object_pawn.trigger_event(direction)
+
 # Updates the pawn's collision tiles and position
 func update_pawn_position(pawn, cell_start, cell_target):
 	set_cellv(cell_target, pawn.type)

@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Maps/world.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Dialogue/writer.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Dialogue/dialogue_manager.gd" type="Script" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 320, 240 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="World" parent="ViewportContainer/Viewport" instance=ExtResource( 1 )]
+
+[node name="Dialogue_Box" type="Node2D" parent="."]
+visible = false
+position = Vector2( 0, 160 )
+script = ExtResource( 3 )
+char_player_path = NodePath("../ViewportContainer/Viewport/World/YSort/Collision Layer/Player")
+
+[node name="ColorRect" type="ColorRect" parent="Dialogue_Box"]
+modulate = Color( 1, 1, 1, 0.392157 )
+margin_right = 320.0
+margin_bottom = 80.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="writer" type="RichTextLabel" parent="Dialogue_Box"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 310.0
+margin_bottom = 70.0
+rect_clip_content = false
+bbcode_enabled = true
+bbcode_text = "dsfsdfsdf"
+text = "dsfsdfsdf"
+script = ExtResource( 2 )
+
+[node name="timer" type="Timer" parent="Dialogue_Box/writer"]
+
+[connection signal="timeout" from="Dialogue_Box/writer/timer" to="Dialogue_Box/writer" method="_timer_timeout"]

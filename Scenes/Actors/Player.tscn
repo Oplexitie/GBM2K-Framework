@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Graphics/Actors/actor_man.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Pawns/player.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Actors/player.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=51]
 resource_name = "idle_down"
@@ -291,7 +291,7 @@ nodes/StateMachine/node = SubResource( 84 )
 nodes/StateMachine/position = Vector2( -180, 140 )
 nodes/TimeScale/node = SubResource( 85 )
 nodes/TimeScale/position = Vector2( 60, 140 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "StateMachine" ]
+node_connections = [ "TimeScale", 0, "StateMachine", "output", 0, "TimeScale" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=87]
 

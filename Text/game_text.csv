@@ -1,0 +1,6 @@
+ ,en,fr
+reset,[],
+text1,"[""This is test text !"",{0:0.02},{}]",
+text2,"[""Like Seriously ! This is test Text !"",{0:0.02,3:0.5,14:0.02},{}]",
+text3,"[""Ok are you done ? You better stop otherwise I'm going to Lorem Ipsum you…"",{0:0.02},{16:3}]",
+text4,"[""....................…Forget it.............................…"",{0:0.01},{}]",

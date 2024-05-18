@@ -9,9 +9,13 @@ const MOVEMENTS : Dictionary = {
 
 export var speed : float = 1.5
 
+# Movement Related (+ animation)
 var input_history : Array = []
 var is_moving : bool = false
+var is_talking : bool = false
 var switch_walk : bool = false
+# Dialogue Related (talk direction)
+var cur_direction : Vector2 = Vector2(0,1)
 
 onready var Grid : TileMap = get_parent()
 onready var animtree : AnimationTree =  $AnimationTree
@@ -21,20 +25,29 @@ onready var walk_anim_length : float = $AnimationPlayer.get_animation("walk_down
 func _process(_delta):
 	input_dir_priority()
 	
-	if is_moving == false:
-		var input_direction : Vector2 = direction_buffer()
-		if !input_direction:
-			return
-		
-		# Checks if the next movement opportunity is possible :
-		var target_position = Grid.request_move(self, input_direction)
-		
-		# If it's possible, move to target position
-		# If it ain't possible, play the idle animation
-		if target_position:
-			move_to(input_direction, target_position)
-		else:
-			animtree.set("parameters/StateMachine/Idle/blend_position", input_direction)
+	# Checks if the character is moving, if not, allow other inputs and movement
+	if is_moving == false :
+		# Checks if the dialogue box is up, if not, allow inputs and movement
+		if is_talking == false:
+			if Input.is_action_just_pressed("ui_accept"):
+				Grid.request_diag(self, cur_direction)
+			
+			var input_direction : Vector2 = direction_buffer()
+			
+			if !input_direction:
+				return
+			
+			cur_direction = input_direction
+			
+			# Checks if the next movement opportunity is possible :
+			var target_position = Grid.request_move(self, input_direction)
+			
+			# If it's possible, move to target position
+			# If it ain't possible, play the idle animation
+			if target_position:
+				move_to(input_direction, target_position)
+			else:
+				animtree.set("parameters/StateMachine/Idle/blend_position", input_direction)
 
 func input_dir_priority():
 	# Input prioritie system, prioritize the latest inputs
