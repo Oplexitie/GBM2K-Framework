@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c22u4fi8okniv"]
+[gd_scene load_steps=12 format=3 uid="uid://cktlplg0urpum"]
 
 [ext_resource type="Texture2D" uid="uid://clolt0da1hneb" path="res://Graphics/CollisionTiles/actor.png" id="1_ayd0k"]
 [ext_resource type="Texture2D" uid="uid://dd4o7n2bo12h" path="res://Graphics/Tilesets/tileset_dungeon.png" id="1_uo5tt"]
 [ext_resource type="Texture2D" uid="uid://vwmpi5st1if5" path="res://Graphics/CollisionTiles/obstacle.png" id="2_g6aja"]
 [ext_resource type="Script" path="res://Scripts/Grid/grid.gd" id="3_1njb8"]
-[ext_resource type="PackedScene" uid="uid://ba2kf014knimx" path="res://Scenes/Actors/player.tscn" id="4_nyxsb"]
-[ext_resource type="PackedScene" uid="uid://03gw0y6mugcc" path="res://Scenes/Actors/actor.tscn" id="5_ehxcq"]
+[ext_resource type="PackedScene" uid="uid://82egl20vpf7n" path="res://Scenes/Actors/player.tscn" id="4_nyxsb"]
+[ext_resource type="PackedScene" uid="uid://d3xeykecmo176" path="res://Scenes/Actors/actor.tscn" id="5_ehxcq"]
 [ext_resource type="Script" path="res://Scripts/Actors/actor_immobile.gd" id="7_ay8ee"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bes64"]
