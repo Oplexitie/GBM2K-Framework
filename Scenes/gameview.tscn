@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://clm7uwtfm23d8"]
+
+[ext_resource type="PackedScene" uid="uid://cktlplg0urpum" path="res://Scenes/Maps/world.tscn" id="1_vcwrr"]
+[ext_resource type="Script" path="res://Scripts/Dialogue/dialogue_manager.gd" id="2_l0pp5"]
+[ext_resource type="Script" path="res://Scripts/Dialogue/writer.gd" id="3_1b6ll"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(320, 240)
+render_target_update_mode = 4
+
+[node name="World" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_vcwrr")]
+
+[node name="Dialogue_Box" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, 160)
+script = ExtResource("2_l0pp5")
+char_player_path = NodePath("../SubViewportContainer/SubViewport/World/Tilemap/Player")
+
+[node name="ColorRect" type="ColorRect" parent="Dialogue_Box"]
+modulate = Color(1, 1, 1, 0.392157)
+offset_right = 320.0
+offset_bottom = 80.0
+color = Color(0, 0, 0, 1)
+
+[node name="writer" type="RichTextLabel" parent="Dialogue_Box"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 310.0
+offset_bottom = 70.0
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "fdfd"
+script = ExtResource("3_1b6ll")
+
+[node name="timer" type="Timer" parent="Dialogue_Box/writer"]
+
+[connection signal="timeout" from="Dialogue_Box/writer/timer" to="Dialogue_Box/writer" method="_timer_timeout"]
