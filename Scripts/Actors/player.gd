@@ -26,17 +26,14 @@ func _process(_delta):
 	input_dir_priority()
 	
 	# Checks if the character is moving, if not, allow other inputs and movement
-	if is_moving == false :
-		if is_talking == false:
-			# Checks if the dialogue box is up, if not, allow inputs and movement
-			if Input.is_action_just_pressed("ui_accept"):
-				Grid.request_diag(self, cur_direction)
-				
-			var input_direction : Vector2 = direction_buffer()
+	if is_moving == false and is_talking == false :
+		# Checks if the dialogue box is up, if not, allow inputs and movement
+		if Input.is_action_just_pressed("ui_accept"):
+			Grid.request_diag(self, cur_direction)
 			
-			if !input_direction:
-				return
-			
+		var input_direction : Vector2 = direction_buffer()
+		
+		if input_direction:
 			cur_direction = input_direction
 			
 			# Checks if the next movement opportunity is possible :
@@ -71,7 +68,7 @@ func direction_buffer():
 			'ui_right', 'ui_left':
 				return Vector2(MOVEMENTS[input_history[history_size - 1]].x + MOVEMENTS[input_history[history_size - 2]].x, 0)
 			'ui_up', 'ui_down':
-				return Vector2(0, MOVEMENTS[input_history[history_size - 1]].y + MOVEMENTS[input_history[history_size - 2]].y)			
+				return Vector2(0, MOVEMENTS[input_history[history_size - 1]].y + MOVEMENTS[input_history[history_size - 2]].y)
 	return Vector2()
 
 func move_to(input_direction : Vector2, target_position : Vector2):

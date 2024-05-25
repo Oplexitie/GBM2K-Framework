@@ -26,29 +26,26 @@ func _ready():
 		dialogue_txt.append(str_to_var(tr(dialogue_paths[i])))
 
 func _process(_delta):
-	if is_talking == false:
-		if is_stopped == false:
-			if is_moving == false:
-				
-				if move_step < move_max-1:
-					move_step += 1
-				else:
-					move_step = 0	
-				
-				if !move_pattern[move_step]:
-					wait()
-					
-				# Checks if the next movement opportunity is possible :
-				var target_position = Grid.request_move(self, move_pattern[move_step])
-				
-				if target_position:
-					# If it's possible, move to target position
-					last_step = move_pattern[move_step]
-					move_to(move_pattern[move_step], target_position)
-				else:
-					# If it ain't possible, play the idle animation
-					animtree.set("parameters/StateMachine/Idle/blend_position", last_step)
-					move_step -= 1
+	if is_talking == false and is_stopped == false and is_moving == false:
+		if move_step < move_max-1:
+			move_step += 1
+		else:
+			move_step = 0	
+		
+		if !move_pattern[move_step]:
+			wait()
+			
+		# Checks if the next movement opportunity is possible :
+		var target_position = Grid.request_move(self, move_pattern[move_step])
+		
+		if target_position:
+			# If it's possible, move to target position
+			last_step = move_pattern[move_step]
+			move_to(move_pattern[move_step], target_position)
+		else:
+			# If it ain't possible, play the idle animation
+			animtree.set("parameters/StateMachine/Idle/blend_position", last_step)
+			move_step -= 1
 
 func move_to(input_direction : Vector2, target_position : Vector2):
 	# Takes care of Animation Speed + Leg Switching (each step, the character swithes the leg they use)
