@@ -26,7 +26,7 @@ func _ready():
 		dialogue_txt.append(str_to_var(tr(dialogue_paths[i])))
 
 func _process(_delta):
-	if is_talking == false and is_stopped == false and is_moving == false:
+	if !is_talking and !is_stopped and !is_moving:
 		if move_step < move_max-1:
 			move_step += 1
 		else:

@@ -36,7 +36,7 @@ func request_diag(pawn, direction):
 		ACTOR:
 			var object_pawn = get_cell_pawn(cell_target)
 			# Checks just in case if the pawn was detected corretly
-			if object_pawn != null:
+			if object_pawn:
 				object_pawn.trigger_event(direction)
 
 # Updates the pawn's collision tiles and position

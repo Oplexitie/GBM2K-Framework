@@ -26,7 +26,7 @@ func _process(_delta):
 	input_dir_priority()
 	
 	# Checks if the character is moving, if not, allow other inputs and movement
-	if is_moving == false and is_talking == false :
+	if !is_moving and !is_talking :
 		# Checks if the dialogue box is up, if not, allow inputs and movement
 		if Input.is_action_just_pressed("ui_accept"):
 			Grid.request_diag(self, cur_direction)
