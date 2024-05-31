@@ -30,7 +30,7 @@ func _process(_delta):
 		if move_step < move_max-1:
 			move_step += 1
 		else:
-			move_step = 0	
+			move_step = 0
 		
 		if !move_pattern[move_step]:
 			wait()
