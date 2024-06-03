@@ -12,13 +12,13 @@ func _ready():
 		tile_set.tile_set_modulate(n,0)
 	
 # Can be used to get a specific pawn in the Grid
-func get_cell_pawn(coordinates):
+func get_cell_pawn(coordinates : Vector2):
 	for node in get_children():
 		if world_to_map(node.position) == coordinates:
 			return(node)
 
 # Used to request movement opportunity
-func request_move(pawn, direction):
+func request_move(pawn : Node2D, direction : Vector2):
 	var cell_start : Vector2 = world_to_map(pawn.position)
 	var cell_target : Vector2 = cell_start + direction
 	
@@ -28,7 +28,7 @@ func request_move(pawn, direction):
 			return update_pawn_position(pawn, cell_start, cell_target)
 
 # Used to request dialogue opportunity
-func request_diag(pawn, direction):
+func request_diag(pawn : Node2D, direction : Vector2):
 	var cell_start : Vector2 = world_to_map(pawn.position)
 	var cell_target : Vector2 = cell_start + direction
 	
@@ -41,7 +41,7 @@ func request_diag(pawn, direction):
 				object_pawn.trigger_event(direction)
 
 # Updates the pawn's collision tiles and position
-func update_pawn_position(pawn, cell_start, cell_target):
+func update_pawn_position(pawn : Node2D, cell_start : Vector2, cell_target : Vector2):
 	set_cellv(cell_target, pawn.type)
 	set_cellv(cell_start, EMPTY)
 	return map_to_world(cell_target) + cell_size / 2
