@@ -32,8 +32,7 @@ func _process(_delta):
 		else:
 			move_step = 0
 		
-		if !move_pattern[move_step]:
-			wait()
+		if !move_pattern[move_step]: wait()
 			
 		# Checks if the next movement opportunity is possible :
 		var target_position = Grid.request_move(self, move_pattern[move_step])
