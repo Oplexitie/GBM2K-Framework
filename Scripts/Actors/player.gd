@@ -23,7 +23,7 @@ var cur_direction : Vector2 = Vector2.DOWN
 @onready var walk_anim_length : float = $AnimationPlayer.get_animation("walk_down").length
 
 func _process(_delta):
-	input_dir_priority()
+	input_priority()
 	
 	# Allow movement if conditions are meet
 	if !is_moving and !is_talking :
@@ -31,7 +31,7 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_accept"):
 			Grid.request_diag(self, cur_direction)
 		
-		var input_direction : Vector2 = direction_buffer()
+		var input_direction : Vector2 = set_direction()
 		
 		if input_direction:
 			# Checks if the next movement opportunity is possible :
@@ -45,7 +45,7 @@ func _process(_delta):
 				# If it ain't possible, then set idle direction
 				animtree.set("parameters/StateMachine/Idle/blend_position", input_direction)
 
-func input_dir_priority():
+func input_priority():
 	# Input prioritie system, prioritize the latest inputs
 	for direction in MOVEMENTS.keys():
 		if Input.is_action_just_released(direction):
@@ -56,7 +56,7 @@ func input_dir_priority():
 		if Input.is_action_just_pressed(direction):
 			input_history.append(direction)
 
-func direction_buffer():
+func set_direction():
 	# Handles the movement direction depending on the inputs
 	var direction = Vector2()
 	
