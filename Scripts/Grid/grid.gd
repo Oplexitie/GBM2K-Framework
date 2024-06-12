@@ -21,7 +21,6 @@ func request_move(pawn : Node2D, direction : Vector2):
 	var cell_target : Vector2 = cell_start + direction
 	
 	var cell_target_type = get_cell_source_id(0,cell_target)
-	
 	match cell_target_type:
 		EMPTY:
 			return update_pawn_position(pawn, cell_start, cell_target)
