@@ -58,7 +58,7 @@ func input_priority():
 
 func set_direction():
 	# Handles the movement direction depending on the inputs
-	var direction = Vector2()
+	var direction : Vector2 = Vector2()
 	
 	if input_history.size():
 		for i in input_history:
