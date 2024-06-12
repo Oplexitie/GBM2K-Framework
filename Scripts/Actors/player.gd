@@ -27,6 +27,7 @@ func _process(_delta):
 	
 	# Allow inputs and movement if conditions are meet
 	if !is_moving and !is_talking:
+		# To Request dialogue
 		if Input.is_action_just_pressed("ui_accept"):
 			Grid.request_diag(self, cur_direction)
 		
@@ -72,10 +73,11 @@ func direction_buffer():
 
 func move_to(input_direction : Vector2, target_position : Vector2):
 	# Takes care of Animation Speed + Leg Switching (each step, the character swithes the leg they use)
+	var str_switch : String = str(int(switch_walk))
 	animtree.set("parameters/TimeScale/scale", speed)
-	animtree.set("parameters/StateMachine/Walk" + str(int(switch_walk)) +"/blend_position", input_direction)
 	animtree.set("parameters/StateMachine/Idle/blend_position", input_direction)
-	animtree["parameters/StateMachine/playback"].start("Walk" + str(int(switch_walk)))
+	animtree.set("parameters/StateMachine/Walk" + str_switch +"/blend_position", input_direction)
+	animtree["parameters/StateMachine/playback"].start("Walk" + str_switch)
 	animtree.advance(0)
 	
 	# Moves the character at the speed of the animation (which can be modified with the speed variable)
@@ -83,7 +85,6 @@ func move_to(input_direction : Vector2, target_position : Vector2):
 		self,"position", position,target_position,
 		walk_anim_length/speed, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	move_tween.start()
-
 	is_moving = true
 
 func _move_tween_done(_obj, _key):
