@@ -1,17 +1,27 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
 config_version=5
 
 [application]
 
 config/name="GBM2K Framework"
+config/tags=PackedStringArray("framework")
 run/main_scene="res://Scenes/gameview.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.png"
-config/tags=PackedStringArray("framework")
 
 [display]
 
 window/size/viewport_width=320
 window/size/viewport_height=240
+window/size/window_width_override=640
+window/size/window_height_override=480
 window/stretch/mode="viewport"
 
 [input]
