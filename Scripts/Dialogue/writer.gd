@@ -35,7 +35,7 @@ func stop() -> void:
 	timer.stop()
 	visible_characters = len(text)
 
-func reset(speed : float = 0.02):
+func reset(speed: float = 0.02):
 	txt_speed = speed
 	skip_buffer = 2
 	

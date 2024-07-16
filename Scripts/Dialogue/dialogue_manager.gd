@@ -1,13 +1,13 @@
 extends Node2D
 
-@export var char_player_path : NodePath
+@export var char_player_path: NodePath
 
-var dialogue_index : int = 0
-var char_npc : Node2D
-var npc_dir : Vector2
+var dialogue_index: int = 0
+var char_npc: Node2D
+var npc_dir: Vector2
 
-@onready var char_player : Node2D = get_node(char_player_path)
-@onready var writer : RichTextLabel = $writer
+@onready var char_player: Node2D = get_node(char_player_path)
+@onready var writer: RichTextLabel = $writer
 
 func _process(_delta):
 	if char_player.is_talking:
@@ -27,7 +27,7 @@ func _process(_delta):
 				dialogue_index += 1
 				dialogue_step()
 
-func dialogue_setup(npc : Node2D, direction : Vector2):
+func dialogue_setup(npc: Node2D, direction: Vector2):
 	# Sets up the dialogue event
 	# If direction is equal to Vector2.ZERO then it's an immobile actor (ex. chair)
 	# If not equal to Vector2.ZERO then it's a mobile actor (ex. npc)
