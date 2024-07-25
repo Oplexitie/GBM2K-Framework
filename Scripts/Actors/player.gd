@@ -1,22 +1,22 @@
-extends "pawn.gd"
+extends Pawn
 
 const MOVEMENTS: Dictionary = {
-	'ui_up': Vector2.UP,
-	'ui_left': Vector2.LEFT,
-	'ui_right': Vector2.RIGHT,
-	'ui_down': Vector2.DOWN 
+	'ui_up': Vector2i.UP,
+	'ui_left': Vector2i.LEFT,
+	'ui_right': Vector2i.RIGHT,
+	'ui_down': Vector2i.DOWN 
 	}
 
 @export var speed: float = 1.5
 
 # Movement Related (+ animation)
-var input_history: Array = []
+var input_history: Array[String] = []
 var is_moving: bool = false
 var is_talking: bool = false
 var switch_walk: bool = false
 var move_tween: Tween
 # Dialogue Related (talk direction)
-var cur_direction: Vector2 = Vector2.DOWN
+var cur_direction: Vector2i = Vector2i.DOWN
 
 @onready var Grid: TileMap = get_parent()
 @onready var animtree: AnimationTree =  $AnimationTree
@@ -31,12 +31,12 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_accept"):
 			Grid.request_diag(self, cur_direction)
 		
-		var input_direction: Vector2 = set_direction()
+		var input_direction: Vector2i = set_direction()
 		
 		if input_direction:
 			# Checks if the next movement opportunity is possible
 			cur_direction = input_direction
-			var target_position = Grid.request_move(self, input_direction)
+			var target_position: Vector2i = Grid.request_move(self, input_direction)
 			
 			if target_position:
 				# If it's possible, move to target position
@@ -56,9 +56,9 @@ func input_priority():
 		if Input.is_action_just_pressed(direction):
 			input_history.append(direction)
 
-func set_direction():
+func set_direction() -> Vector2i:
 	# Handles the movement direction depending on the inputs
-	var direction: Vector2 = Vector2()
+	var direction: Vector2i = Vector2i()
 	
 	if input_history.size():
 		for i in input_history:
@@ -70,7 +70,7 @@ func set_direction():
 	
 	return direction
 
-func move_to(input_direction: Vector2, target_position: Vector2):
+func move_to(input_direction: Vector2i, target_position: Vector2):
 	# Takes care of Animation Speed + Leg Switching (each step, the character swithes the leg they use)
 	var str_switch: String = str(int(switch_walk))
 	animtree.set("parameters/TimeScale/scale", speed)

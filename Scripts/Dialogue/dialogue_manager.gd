@@ -4,7 +4,7 @@ extends Node2D
 
 var dialogue_index: int = 0
 var char_npc: Node2D
-var npc_dir: Vector2
+var npc_dir: Vector2i
 
 @onready var char_player: Node2D = get_node(char_player_path)
 @onready var writer: RichTextLabel = $writer
@@ -27,10 +27,10 @@ func _process(_delta):
 				dialogue_index += 1
 				dialogue_step()
 
-func dialogue_setup(npc: Node2D, direction: Vector2):
+func dialogue_setup(npc: Node2D, direction: Vector2i):
 	# Sets up the dialogue event
-	# If direction is equal to Vector2.ZERO then it's an immobile actor (ex. chair)
-	# If not equal to Vector2.ZERO then it's a mobile actor (ex. npc)
+	# If direction is equal to Vector2i.ZERO then it's an immobile actor (ex. chair)
+	# If not equal to Vector2i.ZERO then it's a mobile actor (ex. npc)
 	if direction:
 		if npc.is_moving: return
 		# Deactivates npc movement and makes the npc face the player during dialogue
@@ -42,7 +42,7 @@ func dialogue_setup(npc: Node2D, direction: Vector2):
 	npc_dir = direction
 	
 	# The player's input history is emptied to avoid any extra movements from happening
-	char_player.input_history = []
+	char_player.input_history.clear()
 	char_player.is_talking = true
 	
 	# Prepares the first block of text and makes the dialogue box visible

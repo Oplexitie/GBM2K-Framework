@@ -1,7 +1,7 @@
-extends "pawn.gd"
+extends Pawn
 
 @export var speed: float = 1.5
-@export var move_pattern: Array[Vector2]
+@export var move_pattern: Array[Vector2i]
 @export var dialogue_paths: Array[String] 
 
 # Movement Related (+ animation)
@@ -11,7 +11,7 @@ var is_stopped: bool = false
 var is_talking: bool = false
 var switch_walk: bool = false
 var move_tween: Tween
-var dialogue_txt: Array
+var dialogue_txt: Array[Array]
 
 @onready var move_max: int = move_pattern.size()
 @onready var Grid: TileMap = get_parent()
@@ -29,8 +29,8 @@ func _process(_delta):
 		if move_step >= move_max: move_step = 0
 		
 		# Checks if the next movement opportunity is possible
-		var current_step: Vector2 = move_pattern[move_step]	
-		var target_position = Grid.request_move(self, current_step)
+		var current_step: Vector2i = move_pattern[move_step]	
+		var target_position: Vector2i = Grid.request_move(self, current_step)
 		
 		if target_position:
 			# If it's possible, move to target position
@@ -43,7 +43,7 @@ func _process(_delta):
 			else:
 				wait()
 
-func move_to(input_direction: Vector2, target_position: Vector2):
+func move_to(input_direction: Vector2i, target_position: Vector2):
 	# Takes care of Animation Speed + Leg Switching (each step, the character swithes the leg they use)
 	var str_switch: String = str(int(switch_walk))
 	animtree.set("parameters/TimeScale/scale", speed)
@@ -68,5 +68,5 @@ func _move_tween_done():
 	switch_walk = !switch_walk
 	is_moving = false
 
-func trigger_event(direction: Vector2):
+func trigger_event(direction: Vector2i):
 	dialogue_manager.dialogue_setup(self, direction)
