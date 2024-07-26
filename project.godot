@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Pawn",
+"language": "GDScript",
+"path": "res://Scripts/Actors/pawn.gd"
+} ]
+_global_script_class_icons={
+"Pawn": ""
+}
+
 [application]
 
 config/name="GBM2K Framework"

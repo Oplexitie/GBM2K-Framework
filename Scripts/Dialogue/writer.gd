@@ -1,11 +1,11 @@
 extends RichTextLabel
 
-var txt_speed = 0.02
-var skip_buffer = 0
-var set_pause = {}
-var set_speed = {}
+var txt_speed: float = 0.02
+var skip_buffer: float = 0
+var set_pause: Dictionary = {}
+var set_speed: Dictionary = {}
 
-onready var timer = $timer
+onready var timer: Timer = $timer
 
 func _timer_timeout() -> void:
 	if visible_characters < len(text) - 1:
@@ -35,7 +35,7 @@ func stop() -> void:
 	timer.stop()
 	visible_characters = len(text)
 
-func reset(speed : float = 0.02):
+func reset(speed: float = 0.02):
 	txt_speed = speed
 	skip_buffer = 2
 	

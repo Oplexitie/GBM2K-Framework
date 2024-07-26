@@ -1,22 +1,22 @@
-extends "pawn.gd"
+extends Pawn
 
-export var speed : float = 1.5
+export var speed: float = 1.5
 export (Array, Vector2) var move_pattern
 export (Array, String) var dialogue_paths
 
 # Movement Related (+ animation)
-var move_step : int = 0
-var is_moving : bool = false
-var is_stopped : bool = false
-var is_talking : bool = false
-var switch_walk : bool = false
-var dialogue_txt : Array
+var move_step: int = 0
+var is_moving: bool = false
+var is_stopped: bool = false
+var is_talking: bool = false
+var switch_walk: bool = false
+var dialogue_txt: Array
 
-onready var move_max : int = move_pattern.size()
-onready var Grid : TileMap = get_parent()
-onready var animtree : AnimationTree =  $AnimationTree
+onready var move_max: int = move_pattern.size()
+onready var Grid: TileMap = get_parent()
+onready var animtree: AnimationTree =  $AnimationTree
 onready var move_tween = $Tween
-onready var walk_anim_length : float = $AnimationPlayer.get_animation("walk_down").length
+onready var walk_anim_length: float = $AnimationPlayer.get_animation("walk_down").length
 
 func _ready():
 	for i in dialogue_paths.size():
@@ -28,9 +28,9 @@ func _process(_delta):
 		move_step += 1
 		if move_step >= move_max: move_step = 0
 		
-		# Checks if the next movement opportunity is possible :
-		var current_step : Vector2 = move_pattern[move_step]	
-		var target_position = Grid.request_move(self, current_step)
+		# Checks if the next movement opportunity is possible:
+		var current_step: Vector2 = move_pattern[move_step]
+		var target_position: Vector2 = Grid.request_move(self, current_step)
 		
 		if target_position:
 			# If it's possible, move to target position
@@ -43,9 +43,9 @@ func _process(_delta):
 			else:
 				wait()
 
-func move_to(input_direction : Vector2, target_position : Vector2):
+func move_to(input_direction: Vector2, target_position: Vector2):
 	# Takes care of Animation Speed + Leg Switching (each step, the character swithes the leg they use)
-	var str_switch : String = str(int(switch_walk))
+	var str_switch: String = str(int(switch_walk))
 	animtree.set("parameters/TimeScale/scale", speed)
 	animtree.set("parameters/StateMachine/Idle/blend_position", input_direction)
 	animtree.set("parameters/StateMachine/Walk" + str_switch +"/blend_position", input_direction)
@@ -70,5 +70,5 @@ func _move_tween_done(_obj, _key):
 	switch_walk = !switch_walk
 	is_moving = false
 
-func trigger_event(direction : Vector2):
+func trigger_event(direction: Vector2):
 	dialogue_manager.dialogue_setup(self, direction)
