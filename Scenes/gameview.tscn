@@ -22,7 +22,7 @@ render_target_update_mode = 4
 visible = false
 position = Vector2(0, 160)
 script = ExtResource("2_l0pp5")
-char_player_path = NodePath("../SubViewportContainer/SubViewport/World/Tilemap/Player")
+char_player_path = NodePath("../SubViewportContainer/SubViewport/World/Pawns/Player")
 
 [node name="ColorRect" type="ColorRect" parent="Dialogue_Box"]
 modulate = Color(1, 1, 1, 0.392157)

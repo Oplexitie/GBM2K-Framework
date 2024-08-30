@@ -18,7 +18,7 @@ var move_tween: Tween
 # Dialogue Related (talk direction)
 var cur_direction: Vector2i = Vector2i.DOWN
 
-@onready var Grid: TileMap = get_parent()
+@onready var Grid: TileMapLayer = get_parent()
 @onready var animtree: AnimationTree =  $AnimationTree
 @onready var walk_anim_length: float = $AnimationPlayer.get_animation("walk_down").length
 

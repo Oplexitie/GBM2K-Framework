@@ -14,7 +14,7 @@ var move_tween: Tween
 var dialogue_txt: Array[Array]
 
 @onready var move_max: int = move_pattern.size()
-@onready var Grid: TileMap = get_parent()
+@onready var Grid: TileMapLayer = get_parent()
 @onready var animtree: AnimationTree =  $AnimationTree
 @onready var walk_anim_length: float = $AnimationPlayer.get_animation("walk_down").length
 
