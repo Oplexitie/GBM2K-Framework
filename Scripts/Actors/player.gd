@@ -14,11 +14,9 @@ var cur_direction: Vector2i = Vector2i.DOWN
 func _process(_delta):
 	input_priority()
 	
-	# Allow movement if conditions are meet
 	if can_move():
-		# To Request dialogue
-		if Input.is_action_just_pressed("ui_accept"):
-			Grid.request_dial(self, cur_direction)
+		if Input.is_action_just_pressed("ui_accept"): # To Request dialogue
+			Grid.request_event(self, cur_direction, 0)
 		
 		var input_direction: Vector2i = set_direction()
 		if input_direction:
@@ -58,7 +56,7 @@ func set_direction() -> Vector2i:
 func _move_tween_done():
 	move_tween.kill()
 	switch_walk = !switch_walk
-	Grid.request_event(self) # Check if there's an event
+	Grid.request_event(self, Vector2i.ZERO, 2) # Check if there's an event
 	is_moving = false
 
 func set_talking(talk_state: bool):

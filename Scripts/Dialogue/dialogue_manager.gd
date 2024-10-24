@@ -6,7 +6,7 @@ extends Node2D
 var dialogue: Array[Array]
 var dialogue_index: int = 0
 var is_active: bool = false
-var can_control: bool = true
+var return_control: bool = true
 
 @onready var writer: RichTextLabel = $writer
 
@@ -15,45 +15,31 @@ func dialogue_setup(event_dial: Array[Array], next_event_step: Callable = Callab
 	if (next_event_step): npc_next_step.connect(next_event_step)
 	emit_signal("player_allow_move", false)
 	emit_signal("npc_next_step", false)
-	can_control = is_only_event
+	return_control = is_only_event
 	
-	# Sets up the dialogue text
-	dialogue = event_dial.duplicate()
+	dialogue = event_dial.duplicate() # Sets up the dialogue text
 	
 	# Prepares the first dialogue text and makes the dialogue box visible
-	dialogue_index = 0
 	_dialogue_step(dialogue_index)
-	visible = true
-	is_active = true
+	set_active_state(true)
 
 func _process(_delta):
 	if is_active:
 		handle_dialogue_steps()
 
-func _is_writer_done() -> bool:
-	return writer.visible_characters >= len(writer.text)
-
-func _is_dialogue_done() -> bool:
-	return dialogue_index + 1 >= dialogue.size() # If all the dialogue texts have been shown, then end the dialogue
-
 func handle_dialogue_steps():
-	# If the dialogue text is all typed out, and 'ui_accept' key is pressed, then load the next
 	if _is_writer_done() and Input.is_action_just_pressed("ui_accept"):
 		if _is_dialogue_done():
-			# Resets and deactivate dialogue elements
-			visible = false
-			is_active = false
-			dialogue.clear()
+			dialogue_index = 0
+			set_active_state(false) # Resets and deactivate dialogue elements
 			
-			emit_signal("npc_next_step", true) # Reactivates npc movement or else
-			
-			if can_control:
-				emit_signal("player_allow_move", true) # Reactivates player and npc movement
+			emit_signal("npc_next_step", true)
+			if return_control:
+				emit_signal("player_allow_move", true)
 				_disconnect_npc_signals()
 		else:
-			# Next dialogue text
-			dialogue_index += 1
-			_dialogue_step(dialogue_index)
+			dialogue_index += 1 
+			_dialogue_step(dialogue_index) # Next dialogue text
 
 func _dialogue_step(index: int):
 	# Prepares the next dialogue text
@@ -62,6 +48,16 @@ func _dialogue_step(index: int):
 	writer.set_speed = dialogue[index][1]
 	writer.set_pause = dialogue[index][2]
 
+func set_active_state(state: bool):
+	visible = state
+	is_active = state
+
 func _disconnect_npc_signals():
 	for i in npc_next_step.get_connections():
 		npc_next_step.disconnect(i.callable)
+
+func _is_writer_done() -> bool:
+	return writer.visible_characters >= len(writer.text)
+
+func _is_dialogue_done() -> bool:
+	return dialogue_index + 1 >= dialogue.size()
