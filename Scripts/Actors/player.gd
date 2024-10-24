@@ -60,5 +60,5 @@ func _move_tween_done():
 	is_moving = false
 
 func set_talking(talk_state: bool):
-	input_history.clear()
 	is_talking = !talk_state
+	if is_talking: input_history.clear()
