@@ -11,7 +11,7 @@ var is_stopped: bool = false
 
 @onready var animtree: AnimationTree =  $AnimationTree
 @onready var walk_anim_length: float = $AnimationPlayer.get_animation("walk_down").length
-@onready var Grid: TileMapLayer = get_parent()
+@onready var Grid: Node2D = get_parent()
 
 func can_move() -> bool:
 	return not is_moving and not is_talking and not is_stopped

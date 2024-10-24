@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func _init_dialogue_signal():
 	# Setup signal to activate/deactivate player movement
-	dialogue_manager.allow_move.connect($Pawns/Player.set_talking)
+	dialogue_manager.player_allow_move.connect($Pawns/Player.set_talking)
 
 func _init_pawn_signals():
 	# Setup signals to trigger dialogue

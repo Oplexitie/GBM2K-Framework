@@ -55,6 +55,12 @@ func set_direction() -> Vector2i:
 	
 	return direction
 
+func _move_tween_done():
+	move_tween.kill()
+	switch_walk = !switch_walk
+	Grid.request_event(self) # Check if there's an event
+	is_moving = false
+
 func set_talking(talk_state: bool):
 	input_history.clear()
 	is_talking = !talk_state
