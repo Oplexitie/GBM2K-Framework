@@ -1168,10 +1168,12 @@ dialogue_2_keys = Array[String](["text4"])
 type = 2
 
 [node name="Actor_Grid" type="TileMapLayer" parent="."]
+visible = false
 tile_set = SubResource("TileSet_0woim")
 collision_enabled = false
 
 [node name="Event_Grid" type="TileMapLayer" parent="."]
+visible = false
 tile_set = SubResource("TileSet_0woim")
 collision_enabled = false
 navigation_enabled = false
