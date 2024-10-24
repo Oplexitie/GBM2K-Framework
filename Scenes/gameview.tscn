@@ -16,13 +16,13 @@ handle_input_locally = false
 size = Vector2i(320, 240)
 render_target_update_mode = 4
 
-[node name="World" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_vcwrr")]
+[node name="World" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("dialogue_manager") instance=ExtResource("1_vcwrr")]
+dialogue_manager = NodePath("../../../Dialogue_Box")
 
 [node name="Dialogue_Box" type="Node2D" parent="."]
 visible = false
 position = Vector2(0, 160)
 script = ExtResource("2_l0pp5")
-char_player_path = NodePath("../SubViewportContainer/SubViewport/World/Pawns/Player")
 
 [node name="ColorRect" type="ColorRect" parent="Dialogue_Box"]
 modulate = Color(1, 1, 1, 0.392157)

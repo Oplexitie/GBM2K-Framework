@@ -1,57 +1,69 @@
 extends Node2D
 
-@export var char_player_path: NodePath
+signal allow_move
 
+var dialogue: Array[Array]
 var dialogue_index: int = 0
-var char_npc: Node2D
-var npc_dir: Vector2i
+var is_active: bool = false
 
-@onready var char_player: Node2D = get_node(char_player_path)
+@onready var player_signal: Callable = _get_player_callable()
 @onready var writer: RichTextLabel = $writer
 
-func _process(_delta):
-	if char_player.is_talking:
-		# If the dialogue is done and the accept key is pressed, the next block of text gets loaded in
-		# If the next block of text is empty then end the dialogue
-		if Input.is_action_just_pressed("ui_accept") and writer.visible_characters == len(writer.text):
-			if char_npc.dialogue_txt[dialogue_index + 1].is_empty():
-				dialogue_index = 0
-				visible = false
-				writer.reset()
-				
-				# Reactivates player and npc movement, for the npc it's if the actor is mobile
-				char_player.is_talking = false
-				if npc_dir: char_npc.is_talking = false
-			else:
-				# Next block of text
-				dialogue_index += 1
-				dialogue_step()
+func _is_writer_done() -> bool:
+	return writer.visible_characters >= len(writer.text)
 
-func dialogue_setup(npc: Node2D, direction: Vector2i):
-	# Sets up the dialogue event
-	# If direction is equal to Vector2i.ZERO then it's an immobile actor (ex. chair)
-	# If not equal to Vector2i.ZERO then it's a mobile actor (ex. npc)
-	if direction:
-		if npc.is_moving: return
-		# Deactivates npc movement and makes the npc face the player during dialogue
-		npc.is_talking = true
-		npc.animtree.set("parameters/StateMachine/Idle/blend_position", -direction)
+func _is_dialogue_done() -> bool:
+	return dialogue_index + 1 >= dialogue.size() # If all the dialogue texts have been shown, then end the dialogue
+
+func dialogue_setup(npc_dial: Array[Array], signal_func: Callable = Callable()):
+	# Adds npc to signal (if assigned), then emits signal to disable movement (or something else)
+	if (signal_func): allow_move.connect(signal_func)
+	emit_signal("allow_move", false)
 	
-	# Saves the npc node and direction for later (in _process() and dialogue_step)
-	char_npc = npc
-	npc_dir = direction
+	# Sets up the dialogue text
+	dialogue = npc_dial.duplicate()
 	
-	# The player's input history is emptied to avoid any extra movements from happening
-	char_player.input_history.clear()
-	char_player.is_talking = true
-	
-	# Prepares the first block of text and makes the dialogue box visible
+	# Prepares the first dialogue text and makes the dialogue box visible
+	dialogue_index = 0
+	_dialogue_step(dialogue_index)
 	visible = true
-	dialogue_step()
+	is_active = true
 
-func dialogue_step():
-	# Prepares the next block of text
-	writer.reset(char_npc.dialogue_txt[dialogue_index][1][0])
-	writer.bbcode_text = char_npc.dialogue_txt[dialogue_index][0]
-	writer.set_speed = char_npc.dialogue_txt[dialogue_index][1]
-	writer.set_pause =  char_npc.dialogue_txt[dialogue_index][2]
+func _process(_delta):
+	if is_active:
+		handle_dialogue_steps()
+
+func handle_dialogue_steps():
+	# If the dialogue text is all typed out, and 'ui_accept' key is pressed, then load the next
+	if _is_writer_done() and Input.is_action_just_pressed("ui_accept"):
+		if _is_dialogue_done():
+			emit_signal("allow_move", true) # Reactivates player and npc movement
+			
+			_disconnect_npc_signals()
+			
+			# Resets and deactivate dialogue elements
+			visible = false
+			is_active = false
+			dialogue.clear()
+		else:
+			# Next dialogue text
+			dialogue_index += 1
+			_dialogue_step(dialogue_index)
+
+func _dialogue_step(index: int):
+	# Prepares the next dialogue text
+	writer.reset(dialogue[index][1][0])
+	writer.bbcode_text = dialogue[index][0]
+	writer.set_speed = dialogue[index][1]
+	writer.set_pause = dialogue[index][2]
+
+func _disconnect_npc_signals():
+	for i in allow_move.get_connections():
+		if i.callable != player_signal:
+			allow_move.disconnect(i.callable)
+
+func _get_player_callable() -> Callable:
+	var callable: Callable
+	for i in allow_move.get_connections():
+		callable = i.callable
+	return callable
