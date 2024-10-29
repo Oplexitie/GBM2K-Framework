@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://clm7uwtfm23d8"]
 
 [ext_resource type="PackedScene" uid="uid://cktlplg0urpum" path="res://Scenes/Maps/world.tscn" id="1_vcwrr"]
-[ext_resource type="Script" path="res://Scripts/Dialogue/dialogue_manager.gd" id="2_l0pp5"]
+[ext_resource type="Script" path="res://Scripts/Dialogue/Types/dialogue_ow.gd" id="2_l0pp5"]
 [ext_resource type="Script" path="res://Scripts/Dialogue/writer.gd" id="3_1b6ll"]
 
 [node name="Node2D" type="Node2D"]

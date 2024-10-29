@@ -1,7 +1,7 @@
-[gd_scene load_steps=37 format=3 uid="uid://82egl20vpf7n"]
+[gd_scene load_steps=37 format=3 uid="uid://d3xeykecmo176"]
 
-[ext_resource type="Script" path="res://Scripts/Actors/player.gd" id="1_cghlj"]
-[ext_resource type="Texture2D" uid="uid://n4h41o7d7rbs" path="res://Graphics/Actors/actor_man.png" id="2_dy3y1"]
+[ext_resource type="Script" path="res://Scripts/Pawns/Types/npc.gd" id="1_5n422"]
+[ext_resource type="Texture2D" uid="uid://n4h41o7d7rbs" path="res://Graphics/Pawns/actor_man.png" id="2_n6d4t"]
 
 [sub_resource type="Animation" id="Animation_5p5oj"]
 resource_name = "idle_down"
@@ -304,17 +304,19 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_17258"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6ixg4"]
+graph_offset = Vector2(-259.661, 45.2562)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_p7un2")
 nodes/StateMachine/position = Vector2(-80, 140)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_17258")
 nodes/TimeScale/position = Vector2(160, 140)
 node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
 
-[node name="Player" type="Node2D"]
-script = ExtResource("1_cghlj")
+[node name="Actor" type="Node2D"]
+script = ExtResource("1_5n422")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_dy3y1")
+modulate = Color(0, 0.486275, 1, 1)
+texture = ExtResource("2_n6d4t")
 offset = Vector2(0, -8)
 hframes = 3
 vframes = 4
