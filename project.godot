@@ -12,8 +12,8 @@ config_version=5
 
 config/name="GBM2K Framework"
 config/tags=PackedStringArray("framework")
-run/main_scene="res://Scenes/gameview.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+run/main_scene="uid://cktlplg0urpum"
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.png"
 
 [display]
@@ -23,6 +23,10 @@ window/size/viewport_height=240
 window/size/window_width_override=640
 window/size/window_height_override=480
 window/stretch/mode="viewport"
+
+[global_group]
+
+Tilemap=""
 
 [input]
 
@@ -36,10 +40,6 @@ ui_cancel={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":88,"key_label":0,"unicode":120,"location":0,"echo":false,"script":null)
 ]
 }
-
-[internationalization]
-
-locale/translations=PackedStringArray("res://Text/game_text.en.translation", "res://Text/game_text.fr.translation")
 
 [rendering]
 

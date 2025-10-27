@@ -1,0 +1,101 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=21 format=3 uid="uid://c050x5reelfn"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jq7m5"]
+animation = &"idle_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r6a54"]
+animation = &"idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hydob"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_encey"]
+animation = &"idle_down"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_kisql"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_jq7m5")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_r6a54")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_hydob")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_encey")
+blend_point_3/pos = Vector2(0, 1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sltjc"]
+animation = &"walk_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iwxjb"]
+animation = &"walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jaqew"]
+animation = &"walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l25ec"]
+animation = &"walk_down"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_aojtf"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_sltjc")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_iwxjb")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_jaqew")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_l25ec")
+blend_point_3/pos = Vector2(0, 1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_shgrg"]
+animation = &"walk_up_alt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uhfqi"]
+animation = &"walk_left_alt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1pi2o"]
+animation = &"walk_right_alt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bih7p"]
+animation = &"walk_down_alt"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_0fsgw"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_shgrg")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_uhfqi")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_1pi2o")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_bih7p")
+blend_point_3/pos = Vector2(0, 1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1x644"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y0v28"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vhytb"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_p7un2"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_kisql")
+states/Idle/position = Vector2(490, 151)
+states/Start/position = Vector2(344, 143)
+states/Walk0/node = SubResource("AnimationNodeBlendSpace2D_aojtf")
+states/Walk0/position = Vector2(673, 83)
+states/Walk1/node = SubResource("AnimationNodeBlendSpace2D_0fsgw")
+states/Walk1/position = Vector2(673, 170)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1x644"), "Walk1", "Idle", SubResource("AnimationNodeStateMachineTransition_y0v28"), "Walk0", "Idle", SubResource("AnimationNodeStateMachineTransition_vhytb")]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_17258"]
+
+[resource]
+graph_offset = Vector2(-315.7, 69.240005)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_p7un2")
+nodes/StateMachine/position = Vector2(-80, 140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_17258")
+nodes/TimeScale/position = Vector2(160, 140)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"StateMachine"]

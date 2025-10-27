@@ -1,35 +1,34 @@
-extends PawnMobile
+extends Character
 
 const MOVEMENTS: Dictionary = {
 	'ui_up': Vector2i.UP,
 	'ui_left': Vector2i.LEFT,
 	'ui_right': Vector2i.RIGHT,
 	'ui_down': Vector2i.DOWN 
-	}
+}
 
-# Movement Related (+ animation)
 var input_history: Array[String] = []
 var cur_direction: Vector2i = Vector2i.DOWN
 
-func _process(_delta):
+func _process(_delta) -> void:
 	input_priority()
 	
 	if can_move():
-		if Input.is_action_just_pressed("ui_accept"): # To Request dialogue
-			Grid.request_event(self, cur_direction, 0)
+		if Input.is_action_just_pressed("ui_accept"):
+			Grid.request_actor(self, cur_direction) # To Request dialogue
 		
 		var input_direction: Vector2i = set_direction()
 		if input_direction:
 			cur_direction = input_direction
-			set_anim_direction(input_direction)
+			chara_skin.set_animation_direction(input_direction)
 			
 			# Checks if the next movement opportunity is possible, if it is move to target position
 			var target_position: Vector2i = Grid.request_move(self, input_direction)
 			if target_position:
 				move_to(target_position)
 
-func input_priority():
-	# Input prioritie system, prioritize the latest inputs
+func input_priority() -> void:
+	# Input priority system, prioritize the latest inputs
 	for direction in MOVEMENTS.keys():
 		if Input.is_action_just_released(direction):
 			var index: int = input_history.find(direction)
@@ -53,12 +52,10 @@ func set_direction() -> Vector2i:
 	
 	return direction
 
-func _move_tween_done():
-	move_tween.kill()
-	switch_walk = !switch_walk
-	Grid.request_event(self, Vector2i.ZERO, 2) # Check if there's an event
-	is_moving = false
+func _move_tween_done() -> void:
+	Grid.request_event(self, Vector2i.ZERO) # Check if there's an event
+	super()
 
-func set_talking(talk_state: bool):
-	is_talking = !talk_state
+func set_talking(talk_state: bool) -> void:
+	is_talking = talk_state
 	if is_talking: input_history.clear()

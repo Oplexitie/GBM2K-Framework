@@ -1,22 +1,20 @@
-extends PawnMobile
-
-@warning_ignore("unused_signal") signal trigger_dialogue
+extends Character
 
 @export var move_pattern: Array[Vector2i]
-@export var dialogue_keys: Array[String] 
 
-# Movement Related (+ animation)
 var move_step: int = 0
+var is_stopped: bool = false
 
 @onready var move_max: int = move_pattern.size()
-@onready var dialogue: Array[Array] = GbmUtils.get_dialogue(dialogue_keys)
 
-func _process(_delta):
-	# Allow movement if conditions are meet
+func _process(_delta) -> void:
+	if is_stopped:
+		return
+	
 	if can_move():
-		var current_step: Vector2i = move_pattern[move_step]	
+		var current_step: Vector2i = move_pattern[move_step]
 		if current_step:
-			set_anim_direction(current_step)
+			chara_skin.set_animation_direction(current_step)
 			
 			# Checks if the next movement opportunity is possible, if it is move to target position
 			var target_position: Vector2i = Grid.request_move(self, current_step)
@@ -31,12 +29,12 @@ func _process(_delta):
 		move_step += 1
 		if move_step >= move_max: move_step = 0
 
-func wait():
+func wait() -> void:
 	is_stopped = true
 	await get_tree().create_timer(1.0).timeout
 	is_stopped = false
 
-func trigger_event(direction: Vector2i):
+func trigger_event(direction: Vector2i) -> void:
 	if not is_moving:
-		set_anim_direction(-direction) # Face player
-		emit_signal("trigger_dialogue", dialogue, set_talking)
+		chara_skin.set_animation_direction(-direction) # Face player
+		print("NPC Mobile")

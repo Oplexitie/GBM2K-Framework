@@ -1,0 +1,27 @@
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://brjfac31s05jj"]
+
+[ext_resource type="Texture2D" uid="uid://clolt0da1hneb" path="res://Graphics/CollisionTiles/actor.png" id="1_sfydv"]
+[ext_resource type="Texture2D" uid="uid://vwmpi5st1if5" path="res://Graphics/CollisionTiles/obstacle.png" id="2_46koj"]
+[ext_resource type="Texture2D" uid="uid://fhhrc5ktpq0l" path="res://Graphics/CollisionTiles/event.png" id="3_ksbdp"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u76ut"]
+texture = ExtResource("1_sfydv")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hbuak"]
+texture = ExtResource("2_46koj")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1d4gm"]
+texture = ExtResource("3_ksbdp")
+0:0/0 = 0
+
+[resource]
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Dirt"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+terrain_set_0/terrain_1/name = "Grass"
+terrain_set_0/terrain_1/color = Color(0.59981, 0.69159, 0.233492, 1)
+sources/0 = SubResource("TileSetAtlasSource_u76ut")
+sources/1 = SubResource("TileSetAtlasSource_hbuak")
+sources/2 = SubResource("TileSetAtlasSource_1d4gm")
