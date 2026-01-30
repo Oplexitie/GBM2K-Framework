@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=21 format=3 uid="uid://c050x5reelfn"]
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://c050x5reelfn"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jq7m5"]
 animation = &"idle_up"

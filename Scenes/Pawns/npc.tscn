@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtegylvkm78fs"]
+[gd_scene format=3 uid="uid://dtegylvkm78fs"]
 
 [ext_resource type="Script" uid="uid://bqgrpwammnvjs" path="res://Scripts/Pawns/Characters/npc.gd" id="1_7fu36"]
 [ext_resource type="Texture2D" uid="uid://n4h41o7d7rbs" path="res://Graphics/Pawns/actor_man.png" id="2_jpb34"]
@@ -6,10 +6,10 @@
 [ext_resource type="AnimationLibrary" uid="uid://b3y87y7fcp23i" path="res://Resources/Animations/base_chara_anim.res" id="4_qjmgd"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://c050x5reelfn" path="res://Resources/Animations/base_chara_animtree.tres" id="5_o87oo"]
 
-[node name="NPC" type="Node2D"]
+[node name="NPC" type="Node2D" unique_id=1062147192]
 script = ExtResource("1_7fu36")
 
-[node name="Skin" type="Sprite2D" parent="."]
+[node name="Skin" type="Sprite2D" parent="." unique_id=189614415]
 modulate = Color(0.7989707, 0, 0.2927908, 1)
 texture = ExtResource("2_jpb34")
 offset = Vector2(0, -8)
@@ -18,14 +18,12 @@ vframes = 4
 frame = 7
 script = ExtResource("3_1wsot")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Skin"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Skin" unique_id=1049950237]
 root_node = NodePath("../..")
-libraries = {
-&"": ExtResource("4_qjmgd")
-}
-autoplay = "idle_down"
+libraries/ = ExtResource("4_qjmgd")
+autoplay = &"idle_down"
 
-[node name="AnimationTree" type="AnimationTree" parent="Skin"]
+[node name="AnimationTree" type="AnimationTree" parent="Skin" unique_id=1288367612]
 root_node = NodePath("../..")
 tree_root = ExtResource("5_o87oo")
 anim_player = NodePath("../AnimationPlayer")
