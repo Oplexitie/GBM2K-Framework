@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dd4o7n2bo12h" path="res://Graphics/Tilesets/tileset_dungeon.png" id="1_uo5tt"]
 [ext_resource type="Script" uid="uid://bmdlnbjwjkibt" path="res://Scripts/Grid/grid_manager.gd" id="3_1njb8"]
+[ext_resource type="PackedScene" uid="uid://cumiy6x3wjpe7" path="res://Scenes/Pawns/npc_astar.tscn" id="4_n2sjt"]
 [ext_resource type="PackedScene" uid="uid://82egl20vpf7n" path="res://Scenes/Pawns/player.tscn" id="4_nyxsb"]
 [ext_resource type="PackedScene" uid="uid://d3xeykecmo176" path="res://Scenes/Pawns/npc_mobile.tscn" id="5_ehxcq"]
 [ext_resource type="Script" uid="uid://xomynkd34bug" path="res://Scripts/Pawns/Types/event.gd" id="7_8j5fh"]
@@ -1117,6 +1118,9 @@ limit_bottom = 376
 position = Vector2(72, 120)
 move_pattern = Array[Vector2i]([Vector2i(1, 0), Vector2i(1, 0), Vector2i(1, 0), Vector2i(0, -1), Vector2i(-1, 0), Vector2i(-1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, 0)])
 speed = 1.0
+
+[node name="NPC_AStar" parent="Pawns" unique_id=51741936 instance=ExtResource("4_n2sjt")]
+position = Vector2(216, 120)
 
 [node name="Object" type="Node2D" parent="Pawns" unique_id=1846017910]
 position = Vector2(200, 120)

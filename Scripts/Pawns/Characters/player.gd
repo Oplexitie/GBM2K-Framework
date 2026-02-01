@@ -24,16 +24,14 @@ func _process(_delta) -> void:
 			
 			# Checks if the next movement opportunity is possible, if it is move to target position
 			var target_position: Vector2i = Grid.request_move(self, input_direction)
-			if target_position:
-				move_to(target_position)
+			if target_position: move_to(target_position)
 
 func input_priority() -> void:
 	# Input priority system, prioritize the latest inputs
 	for direction in MOVEMENTS.keys():
 		if Input.is_action_just_released(direction):
 			var index: int = input_history.find(direction)
-			if index != -1:
-				input_history.remove_at(index)
+			if index != -1: input_history.remove_at(index)
 		
 		if Input.is_action_just_pressed(direction):
 			input_history.append(direction)

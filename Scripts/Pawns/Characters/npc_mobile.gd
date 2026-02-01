@@ -18,10 +18,8 @@ func _process(_delta) -> void:
 			
 			# Checks if the next movement opportunity is possible, if it is move to target position
 			var target_position: Vector2i = Grid.request_move(self, current_step)
-			if target_position:
-				move_to(target_position)
-			else:
-				return # If player is in the way, return to avoid adding to move_step
+			if not target_position: return # If player is in the way
+			move_to(target_position)
 		else:
 			wait()
 		

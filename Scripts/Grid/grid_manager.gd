@@ -15,6 +15,9 @@ func _initialize_grids() -> void:
 func request_move(pawn: Pawn, direction: Vector2i) -> Vector2i:
 	return actor_grid.request_move(pawn, direction)
 
+func get_astar_path(pawn: Pawn, end_cell: Vector2i) -> Array[Vector2i]:
+	return actor_grid.get_move_path(pawn, end_cell)
+
 func request_actor(pawn: Pawn, direction: Vector2i) -> void:
 	actor_grid.request_event(pawn, direction)
 
