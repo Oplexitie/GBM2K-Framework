@@ -9,7 +9,7 @@ func _ready() -> void:
 	_initialize_astar()
 
 func _initialize_astar() -> void:
-	astar.region = Rect2i(0,0,33,23)
+	astar.region = get_grid_region("Tilemap")
 	astar.cell_size = tile_set.tile_size
 	astar.offset = tile_set.tile_size / 2.0
 	astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
@@ -30,8 +30,6 @@ func request_move(pawn: Pawn, direction: Vector2i) -> Vector2i:
 func _id_to_dir_path(cell_path: PackedVector2Array) -> Array[Vector2i]:
 	var path_moves: Array[Vector2i]
 	for i in range(cell_path.size() - 1):
-		if not cell_path[i+1]:
-			continue
 		path_moves.append(cell_path[i+1] - cell_path[i])
 	return path_moves
 

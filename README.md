@@ -10,6 +10,7 @@ The framework replicates the grid movement seen in RPG Maker 2003 while keeping 
 - An input priority system that prioritizes the last directional key pressed
 - NPCs that can be interacted with (triggers a function)
 - An event system (cells that can trigger a function if stepped on)
+- A* Pathfinding system (with NPC example included)
 
 ## Other info
 

@@ -24,6 +24,18 @@ func initialize_cells(node_group: String, custom_data: String) -> void:
 			var cell_coll_id: int = get_target_data.get_custom_data(custom_data)
 			set_cell(cell, cell_coll_id, Vector2i.ZERO)
 
+func get_grid_region(node_group: String) -> Rect2i:
+	var grid_region: Rect2i
+	var curr_max_cells: int = 0
+	var all_layers: Array[Node] = get_tree().get_nodes_in_group(node_group)
+	for layer in all_layers:
+		var layer_region: Rect2i = layer.get_used_rect()
+		var cell_num: int = layer_region.get_area()
+		if cell_num > curr_max_cells:
+			grid_region = layer_region
+			curr_max_cells = cell_num
+	return grid_region
+
 func initialize_pawns(pawn_type: int) -> void:
 	for child in pawn_grid.get_children():
 		if child.type == pawn_type:
