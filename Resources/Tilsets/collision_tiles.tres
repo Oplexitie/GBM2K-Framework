@@ -1,0 +1,35 @@
+[gd_resource type="TileSet" format=3 uid="uid://brjfac31s05jj"]
+
+[ext_resource type="Texture2D" uid="uid://dmen1u3ivkf03" path="res://Graphics/Tilesets/collision_tiles.png" id="1_rghlr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_logd7"]
+atlas = ExtResource("1_rghlr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u76ut"]
+resource_name = "actor"
+texture = SubResource("AtlasTexture_logd7")
+0:0/0 = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cg0hp"]
+atlas = ExtResource("1_rghlr")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hbuak"]
+resource_name = "obstacle"
+texture = SubResource("AtlasTexture_cg0hp")
+0:0/0 = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_801pm"]
+atlas = ExtResource("1_rghlr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1d4gm"]
+resource_name = "event"
+texture = SubResource("AtlasTexture_801pm")
+0:0/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_u76ut")
+sources/1 = SubResource("TileSetAtlasSource_hbuak")
+sources/2 = SubResource("TileSetAtlasSource_1d4gm")

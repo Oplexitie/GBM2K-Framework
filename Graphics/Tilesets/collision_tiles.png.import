@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fhhrc5ktpq0l"
-path="res://.godot/imported/event.png-0cc03fa4d20a2d5b82751bff3277265b.ctex"
+uid="uid://dmen1u3ivkf03"
+path="res://.godot/imported/collision_tiles.png-7c2808fbb8a969a57147e8cff0ad597b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/CollisionTiles/event.png"
-dest_files=["res://.godot/imported/event.png-0cc03fa4d20a2d5b82751bff3277265b.ctex"]
+source_file="res://Graphics/Tilesets/collision_tiles.png"
+dest_files=["res://.godot/imported/collision_tiles.png-7c2808fbb8a969a57147e8cff0ad597b.ctex"]
 
 [params]
 

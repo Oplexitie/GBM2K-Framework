@@ -11,8 +11,7 @@ func _init(grid: Node2D) -> void:
 
 func _initialize_grid_data(grid: Node2D) -> void:
 	tile_set = load("uid://brjfac31s05jj")
-	collision_enabled = false
-	visible = false
+	enabled = false
 	pawn_grid = grid
 
 func initialize_cells(node_group: String, custom_data: String) -> void:

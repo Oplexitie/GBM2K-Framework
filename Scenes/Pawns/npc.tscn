@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://bqgrpwammnvjs" path="res://Scripts/Pawns/Characters/npc.gd" id="1_7fu36"]
 [ext_resource type="Texture2D" uid="uid://n4h41o7d7rbs" path="res://Graphics/Pawns/actor_man.png" id="2_jpb34"]
 [ext_resource type="Script" uid="uid://l4teq1kjwlso" path="res://Scripts/Pawns/Characters/character_skin.gd" id="3_1wsot"]
-[ext_resource type="AnimationLibrary" uid="uid://b3y87y7fcp23i" path="res://Resources/Animations/base_chara_anim.res" id="4_qjmgd"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://c050x5reelfn" path="res://Resources/Animations/base_chara_animtree.tres" id="5_o87oo"]
+[ext_resource type="AnimationLibrary" uid="uid://b3y87y7fcp23i" path="res://Resources/Animations/chara_anim.res" id="4_qjmgd"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://c050x5reelfn" path="res://Resources/Animations/chara_animtree.tres" id="5_o87oo"]
 
 [node name="NPC" type="Node2D" unique_id=1062147192]
 script = ExtResource("1_7fu36")

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://brhhotcc8gfs3" path="res://Scripts/Pawns/Characters/player.gd" id="1_cghlj"]
 [ext_resource type="Texture2D" uid="uid://n4h41o7d7rbs" path="res://Graphics/Pawns/actor_man.png" id="2_dy3y1"]
-[ext_resource type="AnimationLibrary" uid="uid://b3y87y7fcp23i" path="res://Resources/Animations/base_chara_anim.res" id="3_338dp"]
+[ext_resource type="AnimationLibrary" uid="uid://b3y87y7fcp23i" path="res://Resources/Animations/chara_anim.res" id="3_338dp"]
 [ext_resource type="Script" uid="uid://l4teq1kjwlso" path="res://Scripts/Pawns/Characters/character_skin.gd" id="3_tlhq4"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://c050x5reelfn" path="res://Resources/Animations/base_chara_animtree.tres" id="4_5pnro"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://c050x5reelfn" path="res://Resources/Animations/chara_animtree.tres" id="4_5pnro"]
 
 [node name="Player" type="Node2D" unique_id=2073821595]
 script = ExtResource("1_cghlj")

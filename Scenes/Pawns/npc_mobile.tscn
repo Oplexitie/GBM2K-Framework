@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://chkssd8xhad5s" path="res://Scripts/Pawns/Characters/npc_mobile.gd" id="1_5n422"]
 [ext_resource type="Texture2D" uid="uid://n4h41o7d7rbs" path="res://Graphics/Pawns/actor_man.png" id="2_n6d4t"]
-[ext_resource type="AnimationLibrary" uid="uid://b3y87y7fcp23i" path="res://Resources/Animations/base_chara_anim.res" id="3_dsqqv"]
+[ext_resource type="AnimationLibrary" uid="uid://b3y87y7fcp23i" path="res://Resources/Animations/chara_anim.res" id="3_dsqqv"]
 [ext_resource type="Script" uid="uid://l4teq1kjwlso" path="res://Scripts/Pawns/Characters/character_skin.gd" id="3_ycgmr"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://c050x5reelfn" path="res://Resources/Animations/base_chara_animtree.tres" id="4_s0lf7"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://c050x5reelfn" path="res://Resources/Animations/chara_animtree.tres" id="4_s0lf7"]
 
 [node name="NPC_Mobile" type="Node2D" unique_id=292903182]
 script = ExtResource("1_5n422")
