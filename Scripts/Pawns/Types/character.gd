@@ -11,7 +11,7 @@ var is_talking: bool = false
 @onready var Grid: Node2D = get_parent()
 
 func can_move() -> bool:
-	return not is_moving and not is_talking
+	return not ( is_moving or is_talking )
 
 func move_to(target_position: Vector2) -> void:
 	chara_skin.set_animation_speed(speed)

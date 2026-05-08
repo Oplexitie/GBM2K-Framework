@@ -8,8 +8,7 @@ var is_stopped: bool = false
 @onready var move_max: int = move_pattern.size()
 
 func _process(_delta) -> void:
-	if is_stopped:
-		return
+	if is_stopped: return
 	
 	if can_move():
 		var current_step: Vector2i = move_pattern[move_step]
